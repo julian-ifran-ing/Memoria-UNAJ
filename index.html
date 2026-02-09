@@ -19,7 +19,7 @@
         <div class="container">
             <h1 class="title">Mapa de la Memoria</h1>
             <p class="subtitle">Lugares de secuestro y desaparición durante la última dictadura militar (1976-1983)</p>
-            <p class="location">Sur del Conurbano Bonaerense</p>
+            <p class="location">Florencio Varela, Berazategui y Quilmes</p>
         </div>
     </header>
 
@@ -78,8 +78,8 @@
         <div class="modal-container">
             <div class="modal-header">
                 <button class="modal-close" id="modal-close">&times;</button>
+                <img id="modal-photo" class="modal-photo" src="" alt="" style="display: none;">
                 <div class="modal-header-content">
-                    <img id="modal-photo" class="modal-photo" src="" alt="" style="display: none;">
                     <div class="modal-title-section">
                         <h2 id="modal-name" class="modal-name"></h2>
                         <p id="modal-basic-info" class="modal-basic-info"></p>
@@ -89,40 +89,39 @@
             
             <div class="modal-body">
                 <div class="modal-section">
-                    <h3><i class="icon-person"></i> Información Personal</h3>
+                    <h3><i class="icon-person"></i> Datos del detenido/desaparecido</h3>
                     <div class="info-grid">
                         <div class="info-item">
-                            <span class="info-label">Edad:</span>
-                            <span id="modal-age" class="info-value"></span>
+                            <span class="info-label">Apodo:</span>
+                            <span id="modal-apodo" class="info-value"></span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Ocupación:</span>
-                            <span id="modal-occupation" class="info-value"></span>
+                            <span class="info-label">DNI:</span>
+                            <span id="modal-dni" class="info-value"></span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Fecha:</span>
-                            <span id="modal-date" class="info-value"></span>
+                            <span class="info-label">Fecha de secuestro:</span>
+                            <span id="modal-fecha" class="info-value"></span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Lugar:</span>
-                            <span id="modal-address" class="info-value"></span>
+                            <span class="info-label">Nacionalidad:</span>
+                            <span id="modal-nacionalidad" class="info-value"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Profesión:</span>
+                            <span id="modal-profesion" class="info-value"></span>
                         </div>
                     </div>
                 </div>
 
                 <div class="modal-section">
-                    <h3><i class="icon-book"></i> Biografía</h3>
-                    <p id="modal-biography" class="modal-text"></p>
+                    <h3><i class="icon-info"></i> Lugar / Zona de secuestro</h3>
+                    <p id="modal-lugar" class="modal-text"></p>
                 </div>
 
-                <div class="modal-section">
-                    <h3><i class="icon-heart"></i> Testimonio</h3>
-                    <p id="modal-testimony" class="modal-text"></p>
-                </div>
-
-                <div class="modal-section">
-                    <h3><i class="icon-info"></i> Contexto Histórico</h3>
-                    <p id="modal-context" class="modal-text"></p>
+                <div class="modal-section" id="modal-historia-section">
+                    <h3><i class="icon-heart"></i> Su historia</h3>
+                    <p id="modal-historia" class="modal-text"></p>
                 </div>
             </div>
 
@@ -148,6 +147,8 @@
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""></script>
     
+    <!-- Datos de personas desaparecidas -->
+    <script src="datos.js"></script>
     <!-- Script personalizado -->
     <script src="script.js"></script>
 </body>
