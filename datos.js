@@ -21,7 +21,7 @@ const datosMemoria = [
         lugar: "Capital Federal. Zona 1, Subzona Capital Federal, Área 1. Operativo en una fábrica. Militaba en Florencio Varela.",
         profesion: "Sin datos",
         historia:"CCD:EL BANCO / PUENTE 12\nOperativo en una fábrica. Sobrino de José Alfredo Martínez de Hoz. Militaba en Florencio Varela",
-        imagen: "images\ACUÑA-RAMOS-MEJÍA.png"
+        imagen: "images/ACUÑA-RAMOS-MEJÍA.png"
     },
     {
         lat: -34.7910, lng: -58.2770,
@@ -71,7 +71,7 @@ const datosMemoria = [
         lugar: "Perú y P. Elía s/n, Ingeniero Allan, Florencio Varela. Zona 1, Subzona 11, Área 116.",
         profesion: "Delegado gremial de Rigolleau",
         historia: "CCD: EL VESUBIO\nPartido Revolucionario de los Trabajadores-Ejército Revolucionario del Pueblo PRT-ERP",
-        imagen: ""
+        imagen: "images/ALTAMIRANDA-ROJAS.png"
     },
     {
         lat: -34.7950, lng: -58.2820,
@@ -83,7 +83,7 @@ const datosMemoria = [
         lugar: "Avenida Vázquez 375, Florencio Varela, a las 17:20 horas. Zona 1, Subzona 11, Área 116.",
         profesion: "Sin datos",
         historia: "Domicilio: Calle 46 Nº 1827, La Plata.\nNro. de legajo: 2516\nFuerzas Armadas Peronistas FAP- Peronismo de Base PB\nCCD: ESCUELA DE MECANICA DE LA ARMADA",
-        imagen: ""
+        imagen: "images/ARDETI-MOLARO.png"
     },
     {
         lat: -34.7680, lng: -58.2350,
@@ -95,7 +95,7 @@ const datosMemoria = [
         lugar: "Alelíes esquina Las Orquídeas, Bosques, Ruta 2 Km 28.800, Florencio Varela. Zona 1, Subzona 11, Área 116.",
         profesion: "Ayudante de radiología. PRT-ERP.",
         historia: "Partido Revolucionario de los Trabajadores-Ejército Revolucionario del Pueblo PRT-ERP",
-        imagen: ""
+        imagen: "images/ASCONAPE-LUAYZA.png"
     },
     {
         lat: -34.7990, lng: -58.2870,
@@ -107,7 +107,7 @@ const datosMemoria = [
         lugar: "Chubut y Jujuy, Florencio Varela. Zona 1, Subzona 11, Área 116. Compañera de Juan Carlos Follonier. Es asesinada en Varela poniendo a reparo su hijo y cubriendo a Víctor Hugo Díaz.",
         profesion: "Estudiante",
         historia: "REDEFA 116\nMontoneros. Compañera de Juan Carlos Follonier. Es asesinada en Varela poniendo a reparo su hijo y cubriendo a Víctor Hugo Díaz",
-        imagen: ""
+        imagen: "images/BARBEITO-RODRÍGUEZ.png"
     },
     {
         lat: -34.7900, lng: -58.2760,
@@ -119,6 +119,6 @@ const datosMemoria = [
         lugar: "Curva de Berraymundo, Florencio Varela, a las 17 horas. Zona 1, Subzona 11, Área 116.",
         profesion: "Obrero de SEGBA.",
         historia: "Domicilio: Luis Villar 664, Florencio Varela.\nNro. de legajo: 4329\nMontoneros",
-        imagen: ""
+        imagen: "images/BARTUCCI-DEMASI.png"
     }
 ];
