@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de la Memoria - Sur del Conurbano Bonaerense</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+    
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Encabezado -->
+    <header class="header">
+        <div class="container">
+            <h1 class="title">Mapa de la Memoria</h1>
+            <p class="subtitle">Lugares de secuestro y desaparición durante la última dictadura militar (1976-1983)</p>
+            <p class="location">Florencio Varela, Berazategui y Quilmes</p>
+        </div>
+    </header>
+
+    <!-- Contenedor principal -->
+    <main class="main-container">
+        <!-- Panel de información -->
+        <aside class="info-panel">
+            <div class="panel-content">
+                <h2>Información</h2>
+                <p>Este mapa muestra lugares donde ocurrieron secuestros y desapariciones durante la última dictadura militar argentina.</p>
+                
+                <!-- Filtro por años -->
+                <div class="filter-section">
+                    <h3>Filtrar por año</h3>
+                    <div id="year-filters" class="year-filters">
+                        <!-- Los filtros se generarán dinámicamente -->
+                    </div>
+                    <button id="reset-filters" class="reset-btn">Mostrar todos</button>
+                </div>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="total-points">0</span>
+                        <span class="stat-label">Lugares marcados</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="visible-points">0</span>
+                        <span class="stat-label">Actualmente visibles</span>
+                    </div>
+                </div>
+                <div class="legend">
+                    <h3>Referencias</h3>
+                    <div class="legend-item">
+                        <div class="legend-icon"></div>
+                        <span>Lugar de secuestro/desaparición</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Contenedor del mapa -->
+        <div class="map-container">
+            <div id="map"></div>
+            
+            <!-- Controles del mapa -->
+            <div class="map-controls">
+                <button id="reset-view" class="control-btn" title="Volver a la vista inicial">
+                    ⌂ Vista inicial
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal para información detallada -->
+    <div id="person-modal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <button class="modal-close" id="modal-close">&times;</button>
+                <img id="modal-photo" class="modal-photo" src="" alt="" style="display: none;">
+                <div class="modal-header-content">
+                    <div class="modal-title-section">
+                        <h2 id="modal-name" class="modal-name"></h2>
+                        <p id="modal-basic-info" class="modal-basic-info"></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3><i class="icon-person"></i> Datos del detenido/desaparecido</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Apodo:</span>
+                            <span id="modal-apodo" class="info-value"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">DNI:</span>
+                            <span id="modal-dni" class="info-value"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Fecha de secuestro:</span>
+                            <span id="modal-fecha" class="info-value"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Nacionalidad:</span>
+                            <span id="modal-nacionalidad" class="info-value"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Profesión:</span>
+                            <span id="modal-profesion" class="info-value"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3><i class="icon-info"></i> Lugar / Zona de secuestro</h3>
+                    <p id="modal-lugar" class="modal-text"></p>
+                </div>
+
+                <div class="modal-section" id="modal-historia-section">
+                    <h3><i class="icon-heart"></i> Su historia</h3>
+                    <p id="modal-historia" class="modal-text"></p>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="modal-actions">
+                    <button class="btn-secondary" id="modal-close-footer">Cerrar</button>
+                    <button class="btn-primary" onclick="window.print()">Imprimir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 - En memoria de las víctimas del terrorismo de Estado</p>
+            <p class="disclaimer">Los datos presentados tienen fines educativos y de memoria histórica</p>
+        </div>
+    </footer>
+
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+    
+    <!-- Datos de personas desaparecidas -->
+    <script src="datos.js"></script>
+    <!-- Script personalizado -->
+    <script src="script.js"></script>
+</body>
+</html>
