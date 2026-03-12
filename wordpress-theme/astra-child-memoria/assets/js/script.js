@@ -364,13 +364,21 @@ function configurarBuscador() {
 document.addEventListener('DOMContentLoaded', function() {
     try {
         if (typeof L === 'undefined') throw new Error('Leaflet no disponible');
-        if (typeof datosMemoria === 'undefined') throw new Error('datos.js no cargado');
+        if (typeof datosMemoria === 'undefined') window.datosMemoria = [];
 
         inicializarMapa();
         configurarModal();
-        agregarMarcadores();
+        if (datosMemoria.length) {
+            agregarMarcadores();
+        }
         renderizarGaleria();
         configurarBuscador();
+        actualizarContadores();
+
+        // Forzar recálculo del tamaño del mapa varias veces (Astra tarda en renderizar)
+        [100, 300, 500, 1000, 2000].forEach(function(ms) {
+            setTimeout(function() { map.invalidateSize(); }, ms);
+        });
 
     } catch (error) {
         console.error('Error:', error);

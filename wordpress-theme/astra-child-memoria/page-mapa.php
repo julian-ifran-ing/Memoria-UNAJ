@@ -1,20 +1,118 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mapa de la Memoria - Sur del Conurbano Bonaerense</title>
-    
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-          crossorigin=""/>
-    
-    <!-- Estilos personalizados -->
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <!-- Encabezado -->
+<?php
+/**
+ * Template Name: Mapa de la Memoria
+ * 
+ * Usa header/footer de Astra + contenido fullwidth del mapa
+ */
+
+get_header(); ?>
+
+<style>
+    /* Toda la cadena de contenedores de Astra debe ocupar 100% */
+    .page-template-page-mapa #page {
+        display: flex !important;
+        flex-direction: column !important;
+        min-height: 100vh !important;
+    }
+    .page-template-page-mapa #content {
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    .page-template-page-mapa .ast-container {
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    .page-template-page-mapa #primary {
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    .page-template-page-mapa main.site-main {
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    .page-template-page-mapa article {
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        float: none !important;
+    }
+    .page-template-page-mapa .entry-content {
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    .page-template-page-mapa .ast-row {
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* El contenedor del mapa ocupa todo el espacio restante */
+    .page-template-page-mapa .main-container {
+        flex: 1 !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: flex !important;
+        overflow: hidden !important;
+    }
+    .page-template-page-mapa .info-panel {
+        flex: 0 0 240px !important;
+        overflow-y: auto !important;
+    }
+    .page-template-page-mapa .map-container {
+        flex: 1 1 auto !important;
+        position: relative !important;
+        height: unset !important;
+    }
+    .page-template-page-mapa #map {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        height: auto !important;
+    }
+
+    /* Ocultar elementos innecesarios */
+    .page-template-page-mapa .entry-header,
+    .page-template-page-mapa .page-header,
+    .page-template-page-mapa .ast-breadcrumbs-wrapper {
+        display: none !important;
+    }
+    /* Ajustar alto del mapa restando header custom */
+    .page-template-page-mapa .main-container {
+        flex: 1 !important;
+    }
+</style>
+
+    <!-- Encabezado personalizado -->
     <header class="header">
         <div class="container">
             <h1 class="title">Mapa de la Memoria</h1>
@@ -31,9 +129,7 @@
                 <!-- Filtro por años -->
                 <div class="filter-section">
                     <h3>Filtrar por año</h3>
-                    <div id="year-filters" class="year-filters">
-                        <!-- Los filtros se generarán dinámicamente -->
-                    </div>
+                    <div id="year-filters" class="year-filters"></div>
                     <button id="reset-filters" class="reset-btn">Mostrar todos</button>
                 </div>
                 
@@ -47,15 +143,12 @@
                         <span class="stat-label">Actualmente visibles</span>
                     </div>
                 </div>
-
             </div>
         </aside>
 
         <!-- Contenedor del mapa -->
         <div class="map-container">
             <div id="map"></div>
-            
-            <!-- Controles del mapa -->
             <div class="map-controls">
                 <button id="reset-view" class="control-btn" title="Volver a la vista inicial">
                     ⌂ Vista inicial
@@ -83,7 +176,7 @@
         </div>
     </section>
 
-    <!-- Modal para información detallada -->
+    <!-- Modal -->
     <div id="person-modal" class="modal-overlay">
         <div class="modal-container">
             <div class="modal-header">
@@ -96,7 +189,6 @@
                     </div>
                 </div>
             </div>
-            
             <div class="modal-body">
                 <div class="modal-section">
                     <h3><i class="icon-person"></i> Datos del detenido/desaparecido</h3>
@@ -123,18 +215,15 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="modal-section">
                     <h3><i class="icon-info"></i> Lugar / Zona de secuestro</h3>
                     <p id="modal-lugar" class="modal-text"></p>
                 </div>
-
                 <div class="modal-section" id="modal-historia-section">
                     <h3><i class="icon-heart"></i> Su historia</h3>
                     <p id="modal-historia" class="modal-text"></p>
                 </div>
             </div>
-
             <div class="modal-footer">
                 <div class="modal-actions">
                     <button class="btn-secondary" id="modal-close-footer">Cerrar</button>
@@ -144,22 +233,4 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 - En memoria de las víctimas del terrorismo de Estado</p>
-            <p class="disclaimer">Los datos presentados tienen fines educativos y de memoria histórica</p>
-        </div>
-    </footer>
-
-    <!-- Leaflet JavaScript -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-            crossorigin=""></script>
-    
-    <!-- Datos de personas desaparecidas -->
-    <script src="datos.js"></script>
-    <!-- Script personalizado -->
-    <script src="script.js"></script>
-</body>
-</html>
+    <?php get_footer(); ?>
